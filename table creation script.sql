@@ -40,6 +40,7 @@ CREATE TABLE course (
     course_name VARCHAR(100) NOT NULL
 )
 
+-- Table to track course instances, including the instructor, start and end dates, times, days of the week, and occupancy
 CREATE TABLE course_instance
 (
     course_instance_id INT PRIMARY KEY,
@@ -49,24 +50,29 @@ CREATE TABLE course_instance
     end_date DATE NOT NULL,
     start_time TIME NOT NULL,
     end_time TIME NOT NULL,
-    days_of_week VARCHAR(3) NOT NULL,
-    max_occupancy INT NOT NULL,
+    days_of_week VARCHAR(3) NOT NULL, -- e.g., 'MWF' for Monday, Wednesday, Friday, 'TT' for Tuesday, Thursday
+    max_occupancy INT NOT NULL, 
     current_occupancy INT NOT NULL,
     FOREIGN KEY (course_id) REFERENCES course(course_id),
     FOREIGN KEY (instructor_id) REFERENCES instructor(instructor_id)
 )
 
+-- Table to track student registrations for course instances, if they've taken the course before, and if they are currently enrolled
 CREATE TABLE registration (
     course_instance_id INT,
     student_id INT,
+    registration_date DATE NOT NULL,
+    is_currently_enrolled BIT NOT NULL, -- 1 for true, 0 for false
     FOREIGN KEY (course_instance_id) REFERENCES course_instance(course_instance_id),
     FOREIGN KEY (student_id) REFERENCES student(student_id)
 )
 
+-- Table to track prerequisites for courses
 CREATE TABLE prerequisite (
     course_id INT,
     prerequisite_course_id INT,
     FOREIGN KEY (course_id) REFERENCES course(course_id),
     FOREIGN KEY (prerequisite_course_id) REFERENCES course(course_id)
 )
+
 
