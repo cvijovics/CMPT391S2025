@@ -10,6 +10,7 @@ GO
 -- Drop existing tables if they exist
 IF OBJECT_ID('registration', 'U') IS NOT NULL DROP TABLE registration;
 IF OBJECT_ID('course_instance', 'U') IS NOT NULL DROP TABLE course_instance;
+IF OBJECT_ID('prerequisite', 'U') IS NOT NULL DROP TABLE prerequisite;
 IF OBJECT_ID('course', 'U') IS NOT NULL DROP TABLE course;
 IF OBJECT_ID('student', 'U') IS NOT NULL DROP TABLE student;
 IF OBJECT_ID('instructor', 'U') IS NOT NULL DROP TABLE instructor;
@@ -60,5 +61,12 @@ CREATE TABLE registration (
     student_id INT,
     FOREIGN KEY (course_instance_id) REFERENCES course_instance(course_instance_id),
     FOREIGN KEY (student_id) REFERENCES student(student_id)
+)
+
+CREATE TABLE prerequisite (
+    course_id INT,
+    prerequisite_course_id INT,
+    FOREIGN KEY (course_id) REFERENCES course(course_id),
+    FOREIGN KEY (prerequisite_course_id) REFERENCES course(course_id)
 )
 
