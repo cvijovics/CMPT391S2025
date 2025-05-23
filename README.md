@@ -54,7 +54,8 @@ This repository contains the SQL scripts needed to set up the CMPT391S2025 datab
 
 5. **Insert Sample Data**
 
-   - Execute the provided insert scripts (e.g., `student insert.sql`, `department insert.sql`) to populate the tables with sample data.
+   - Execute the provided insert scripts to populate tables with sample data. Do so in the following order:
+   - department, student, instructor, course, instance
 
 6. **Test Your Setup**
 
@@ -79,7 +80,3 @@ This repository contains the SQL scripts needed to set up the CMPT391S2025 datab
 
 - **Reload VS Code:**  
   If problems persist, try reloading VS Code with `Developer: Reload Window` from the Command Palette.
-
-----------------
-
-Happy coding!
