@@ -1,5 +1,5 @@
 
-USE DummyDB;
+USE CMPT391S2025;
 GO
 insert into instructor (instructor_id, first_name, last_name, department_id) values (1, 'Cchaddie', 'Letessier', 2);
 insert into instructor (instructor_id, first_name, last_name, department_id) values (2, 'Jamal', 'Jacks', 1);

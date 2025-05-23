@@ -1,4 +1,10 @@
-USE DummyDB;
+-- had errors running this script - Jamie (May 23)
+
+-- Started executing query at Line 3
+-- Msg 547, Level 16, State 0, Line 3
+-- The INSERT statement conflicted with the FOREIGN KEY constraint "FK__course_in__instr__09A971A2". The conflict occurred in database "CMPT391S2025", table "dbo.instructor", column 'instructor_id'.
+
+USE CMPT391S2025;
 GO
 insert into course_instance (course_instance_id, course_id, instructor_id, start_date, end_date, start_time, end_time, days_of_week, max_occupancy, current_occupancy) values (1, 41, 31, '2025-07-01', '2025-08-18', '08:00:00', '11:00:00', 'TT', 30, 11);
 insert into course_instance (course_instance_id, course_id, instructor_id, start_date, end_date, start_time, end_time, days_of_week, max_occupancy, current_occupancy) values (2, 48, 65, '2025-07-01', '2025-08-18', '09:00:00', '12:00:00', 'TT', 40, 3);

@@ -1,5 +1,5 @@
 
-USE DummyDB;
+USE CMPT391S2025;
 GO
 
 insert into department (department_id, department_name) values (1, 'Art');

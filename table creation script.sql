@@ -1,10 +1,10 @@
 --Checks if the database exists, if not, creates it
-IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'DummyDB')
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'CMPT391S2025')
 BEGIN
-    CREATE DATABASE DummyDB;
+    CREATE DATABASE CMPT391S2025;
 END
 GO
-USE DummyDB;
+USE CMPT391S2025;
 GO
 
 -- Drop existing tables if they exist

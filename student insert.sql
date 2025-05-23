@@ -1,5 +1,5 @@
 
-USE DummyDB;
+USE CMPT391S2025;
 GO
 
 insert into student (student_id, first_name, last_name) values (1, 'Debra', 'Brent');

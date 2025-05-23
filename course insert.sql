@@ -1,5 +1,5 @@
 
-USE DummyDB;
+USE CMPT391S2025;
 GO
 
 insert into course (course_id, course_name) values (1, 'CMPT101');
