@@ -80,14 +80,6 @@ This repository contains the SQL scripts needed to set up the CMPT391S2025 datab
 - **Reload VS Code:**  
   If problems persist, try reloading VS Code with `Developer: Reload Window` from the Command Palette.
 
----
-
-## Next Steps
-
-- Expand your SQL queries to include operations such as joins, filtering, and more.
-- Integrate these SQL scripts with your application as needed.
-- Update the schema and scripts as project requirements evolve.
-
----
+----------------
 
 Happy coding!
