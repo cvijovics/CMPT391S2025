@@ -19,6 +19,11 @@ GO
 USE CMPT391S2025;
 
 -- Drop existing tables if they exist
+IF EXISTS (SELECT * FROM sys.foreign_keys WHERE name = 'fk_department_head')
+BEGIN
+    ALTER TABLE department DROP CONSTRAINT fk_department_head;
+END
+
 IF OBJECT_ID('registration', 'U') IS NOT NULL DROP TABLE registration;
 IF OBJECT_ID('course_instance', 'U') IS NOT NULL DROP TABLE course_instance;
 IF OBJECT_ID('prerequisite', 'U') IS NOT NULL DROP TABLE prerequisite;
@@ -44,13 +49,14 @@ CREATE TABLE instructor (
 		ON UPDATE CASCADE
 )
 
--- Handling circular FK reference
-ALTER TABLE department
-ADD CONSTRAINT fk_department_head
-FOREIGN KEY (department_head_id)
-	REFERENCES instructor(instructor_id)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE;
+ -- Handling circular FK reference
+ -- Need to manually delete/update department head on instructor update/deletion
+ ALTER TABLE department
+ ADD CONSTRAINT fk_department_head
+ FOREIGN KEY (department_head_id)
+ 	REFERENCES instructor(instructor_id)
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION;
 
 CREATE TABLE student (
     student_id INT PRIMARY KEY,
@@ -102,16 +108,17 @@ CREATE TABLE registration (
 		ON UPDATE CASCADE
 )
 
+
 -- Table to track prerequisites for courses
 CREATE TABLE prerequisite (
     course_id INT,
     prerequisite_course_id INT,
     FOREIGN KEY (course_id) 
 		REFERENCES course(course_id)
-		ON DELETE CASCADE -- Remove prereqs for courses that don't exist.
-		ON UPDATE CASCADE,
+		ON DELETE NO ACTION -- Need to manually delete or update prerequisite when a course_id is changed
+		ON UPDATE NO ACTION,
     FOREIGN KEY (prerequisite_course_id) 
 		REFERENCES course(course_id)
-		ON DELETE CASCADE -- Remove prereqs for courses that don't exist.
-		ON UPDATE CASCADE
+		ON DELETE NO ACTION -- Need to manually delete or update prerequisite when a course_id is changed
+		ON UPDATE NO ACTION
 )
