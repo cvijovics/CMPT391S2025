@@ -1,4 +1,4 @@
--- was having trouble with 'GO' methods
+-- DB Creation Script
 
 IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'CMPT391S2025')
 BEGIN
