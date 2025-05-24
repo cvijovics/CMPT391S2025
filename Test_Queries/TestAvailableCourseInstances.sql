@@ -1,0 +1,2 @@
+EXEC GetAvailableCourseInstances;
+-- view results
