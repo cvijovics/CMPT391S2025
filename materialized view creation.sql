@@ -1,14 +1,22 @@
+USE CMPT391S2025;
+GO
+-- Drop the procedure if it exists
+IF OBJECT_ID(N'dbo.createMaterializedView', N'P') IS NOT NULL
+    DROP PROCEDURE dbo.createMaterializedView;
+GO
 
 CREATE PROCEDURE createMaterializedView
+
 AS
 BEGIN
+        -- Check if the materialized view already exists
+        EXEC sp_executesql N'
+            IF OBJECT_ID(N''dbo.view_student_registration'', N''V'') IS NOT NULL
+                DROP VIEW dbo.view_student_registration;
+        ';
         -- Create the materialized view
         EXEC sp_executesql N'
-            IF OBJECT_ID(N''CMPT391S2025.view_student_registration'', N''V'') IS NOT NULL
-                DROP VIEW CMPT391S2025.view_student_registration;
-        ';
-        EXEC sp_executesql N'
-        CREATE VIEW CMPT391S2025.view_student_registration
+        CREATE VIEW dbo.view_student_registration
             WITH SCHEMABINDING
             AS
             SELECT 
@@ -22,14 +30,15 @@ BEGIN
                 i.start_time, 
                 i.end_time,
                 i.days_of_week
-            FROM CMPT391S2025.student as s
-            JOIN CMPT391S2025.registration as r ON s.student_id = r.student_id
-            JOIN CMPT391S2025.course_instance as i ON r.course_instance_id = i.course_instance_id
-            JOIN CMPT391S2025.course as c ON i.course_id = c.course_id;
+            FROM dbo.student as s
+            JOIN dbo.registration as r ON s.student_id = r.student_id
+            JOIN dbo.course_instance as i ON r.course_instance_id = i.course_instance_id
+            JOIN dbo.course as c ON i.course_id = c.course_id;
         ';
-        EXEC sp_executesql'
+        -- Create the clustered index on the materialized view
+        EXEC sp_executesql N'
                 CREATE UNIQUE CLUSTERED INDEX idx_student_registration
-                ON CMPT391S2025.view_student_registration(student_id);
+                ON dbo.view_student_registration(student_id);
         ';     
 END;
 
