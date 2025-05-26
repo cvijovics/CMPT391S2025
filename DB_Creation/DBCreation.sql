@@ -9,6 +9,11 @@
 ----------------------------------------------------------------
 -- Full Database Creation, Seeding, and Materialized View Setup
 ----------------------------------------------------------------
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'CMPT391S2025')
+BEGIN
+    CREATE DATABASE CMPT391S2025;
+END
+GO
 
 USE CMPT391S2025;
 GO
