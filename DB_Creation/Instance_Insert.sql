@@ -1,8 +1,4 @@
--- had errors running this script - Jamie (May 23)
 
--- Started executing query at Line 3
--- Msg 547, Level 16, State 0, Line 3
--- The INSERT statement conflicted with the FOREIGN KEY constraint "FK__course_in__instr__09A971A2". The conflict occurred in database "CMPT391S2025", table "dbo.instructor", column 'instructor_id'.
 
 USE CMPT391S2025;
 GO
