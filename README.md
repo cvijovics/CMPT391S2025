@@ -92,6 +92,6 @@ This repository contains the SQL scripts needed to set up the CMPT391S2025 datab
 - **Reload VS Code:**  
   If problems persist, try reloading VS Code with `Developer: Reload Window` from the Command Palette.
 
-- # To Start From Scratch:
+- ### To Start From Scratch:
    - Run `DeleteDB.sql`
    - Start from beginning, but run `Recreate_Stored_Procedures.sql` afterwards
