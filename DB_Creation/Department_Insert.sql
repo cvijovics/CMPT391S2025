@@ -7,3 +7,6 @@ insert into department (department_id, department_name) values (2, 'Science');
 insert into department (department_id, department_name) values (3, 'Music');
 insert into department (department_id, department_name) values (4, 'Engineering');
 insert into department (department_id, department_name) values (5, 'Business');
+
+-- Testing purposes
+PRINT 'Department insertion script executed.';

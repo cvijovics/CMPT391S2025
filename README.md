@@ -10,7 +10,7 @@ This repository contains the SQL scripts needed to set up the CMPT391S2025 datab
 
 ## Prerequisites
 
-- **SQL Server / SQL Server Express:** Ensure it is installed on your machine.
+- **SQL Server / SQL Server Express:** Ensure it is installed on your machine
 - **Visual Studio Code:** Download from [VS Code](https://code.visualstudio.com/).
 - **mssql VS Code Extension:** Install via the [mssql extension](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql).
 
@@ -34,30 +34,35 @@ This repository contains the SQL scripts needed to set up the CMPT391S2025 datab
    - Enter your connection details:
      - **Server:** `localhost` or `localhost\SQLEXPRESS` (depending on your installation)
      - **Authentication:** Choose Windows Authentication (or SQL Server Authentication if needed)
-     - **Database:** For initial setup, connect to the `master` database.
+     - **Database:** For initial setup, connect to the `master` database. Once your setup, you can then use `CMPT391S2025`
 
 4. **Create the Database**
 
-   - Open the `table creation script.sql` (or `DBCreation.sql`) file.
-   - Ensure the file is active (click inside the editor) before running the commands.
-   - Execute the following commands to create your database and switch to it:
-     
-     ```sql
-     IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'CMPT391S2025')
-     BEGIN
-         CREATE DATABASE CMPT391S2025;
-     END;
-     USE CMPT391S2025;
-     ```
+   - Open the `DBCreation.sql` file.
+   - Ensure the file is active (click inside the editor) and sql server is running before running the script.
+   - You should be able to switch to the database now (from master).
      
    - **Note:** If batch separators (like `GO`) cause issues, run each command individually.
 
-5. **Insert Sample Data**
-
-   - Execute the provided insert scripts to populate tables with sample data. Do so in the following order:
+5. **Insert test data**
+   - Run insert data in this order:
    - department, student, instructor, course, instance
 
-6. **Test Your Setup**
+6. **Insert Materialized View/Stored Procedures**
+
+   Although these groups don't need to be run in any particular order, the scripts listed within do 
+   (dependancies):
+   (This is incomplete)
+
+   - Creating Registration Flow:
+      - 1. `Create_Materialized_View.sql`
+      - 2. `Validate_Student_Registration.sql`
+      - 3. `Confirm_Student_Registration.sql`
+   
+   - Front-End Queries:
+      - 1. `GetAvailableCourseInstances.sq1`
+
+7. **Test Your Setup**
 
    - Create a new SQL file (for example, `test.sql`) and run:
      
@@ -68,6 +73,8 @@ This repository contains the SQL scripts needed to set up the CMPT391S2025 datab
      
    - You should see query results with headers and the inserted data.
 
+   - Testing scripts included under `Test_Queries`
+
 ---
 
 ## Troubleshooting
@@ -75,8 +82,16 @@ This repository contains the SQL scripts needed to set up the CMPT391S2025 datab
 - **Active SQL Editor:**  
   Ensure the SQL file you're executing is in focus (click inside the editor) before running commands.
 
+- **Execute Scripts in the Correct Order**
+  Important!
+  - department, student, instructor, course, instance
+
 - **Output Panel:**  
   Open **View > Output** in VS Code and select the "MSSQL" channel for error messages and logs.
 
 - **Reload VS Code:**  
   If problems persist, try reloading VS Code with `Developer: Reload Window` from the Command Palette.
+
+- ### To Start From Scratch:
+   - Run `DeleteDB.sql`
+   - Start from beginning
