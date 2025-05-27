@@ -1,8 +1,9 @@
-
-
 USE CMPT391S2025;
 GO
-insert into course_instance (course_instance_id, course_id, instructor_id, start_date, end_date, start_time, end_time, days_of_week, max_occupancy, current_occupancy) values (1, 41, 31, '2025-07-01', '2025-08-18', '08:00:00', '11:00:00', 'TT', 30, 11);
+-- For testing dbo.ValidateStudentRegistration
+insert into course_instance (course_instance_id, course_id, instructor_id, start_date, end_date, start_time, end_time, days_of_week, max_occupancy, current_occupancy) values (0, 1, 31, '2025-07-01', '2025-08-18', '08:00:00', '11:00:00', 'TT', 30, 11);
+
+insert into course_instance (course_instance_id, course_id, instructor_id, start_date, end_date, start_time, end_time, days_of_week, max_occupancy, current_occupancy) values (1, 5, 31, '2025-07-01', '2025-08-18', '08:00:00', '11:00:00', 'TT', 30, 11);
 insert into course_instance (course_instance_id, course_id, instructor_id, start_date, end_date, start_time, end_time, days_of_week, max_occupancy, current_occupancy) values (2, 48, 65, '2025-07-01', '2025-08-18', '09:00:00', '12:00:00', 'TT', 40, 3);
 insert into course_instance (course_instance_id, course_id, instructor_id, start_date, end_date, start_time, end_time, days_of_week, max_occupancy, current_occupancy) values (3, 46, 70, '2025-07-01', '2025-08-18', '10:00:00', '13:00:00', 'TT', 30, 12);
 insert into course_instance (course_instance_id, course_id, instructor_id, start_date, end_date, start_time, end_time, days_of_week, max_occupancy, current_occupancy) values (4, 32, 29, '2025-07-01', '2025-08-18', '11:00:00', '14:00:00', 'TT', 50, 1);

@@ -1,6 +1,7 @@
-
 USE CMPT391S2025;
 GO
+-- For testing dbo.ValidateStudentRegistration
+insert into student (student_id, first_name, last_name) values (0, 'Debra', 'Brent');
 
 insert into student (student_id, first_name, last_name) values (1, 'Debra', 'Brent');
 insert into student (student_id, first_name, last_name) values (2, 'Godard', 'oldey');

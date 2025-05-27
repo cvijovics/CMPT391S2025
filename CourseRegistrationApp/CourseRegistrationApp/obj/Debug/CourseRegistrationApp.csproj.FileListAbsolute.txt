@@ -1,0 +1,11 @@
+C:\Users\napst\Desktop\Coding\CMPT391S2025\CourseRegistrationApp\CourseRegistrationApp\bin\Debug\CourseRegistrationApp.exe.config
+C:\Users\napst\Desktop\Coding\CMPT391S2025\CourseRegistrationApp\CourseRegistrationApp\bin\Debug\CourseRegistrationApp.exe
+C:\Users\napst\Desktop\Coding\CMPT391S2025\CourseRegistrationApp\CourseRegistrationApp\bin\Debug\CourseRegistrationApp.pdb
+C:\Users\napst\Desktop\Coding\CMPT391S2025\CourseRegistrationApp\CourseRegistrationApp\obj\Debug\CourseRegistrationApp.csproj.AssemblyReference.cache
+C:\Users\napst\Desktop\Coding\CMPT391S2025\CourseRegistrationApp\CourseRegistrationApp\obj\Debug\CourseRegistrationApp.selectionForm.resources
+C:\Users\napst\Desktop\Coding\CMPT391S2025\CourseRegistrationApp\CourseRegistrationApp\obj\Debug\CourseRegistrationApp.Properties.Resources.resources
+C:\Users\napst\Desktop\Coding\CMPT391S2025\CourseRegistrationApp\CourseRegistrationApp\obj\Debug\CourseRegistrationApp.RegistrationForm.resources
+C:\Users\napst\Desktop\Coding\CMPT391S2025\CourseRegistrationApp\CourseRegistrationApp\obj\Debug\CourseRegistrationApp.csproj.GenerateResource.cache
+C:\Users\napst\Desktop\Coding\CMPT391S2025\CourseRegistrationApp\CourseRegistrationApp\obj\Debug\CourseRegistrationApp.csproj.CoreCompileInputs.cache
+C:\Users\napst\Desktop\Coding\CMPT391S2025\CourseRegistrationApp\CourseRegistrationApp\obj\Debug\CourseRegistrationApp.exe
+C:\Users\napst\Desktop\Coding\CMPT391S2025\CourseRegistrationApp\CourseRegistrationApp\obj\Debug\CourseRegistrationApp.pdb
