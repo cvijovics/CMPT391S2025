@@ -32,7 +32,6 @@ IF OBJECT_ID('fk_department_head', 'F') IS NOT NULL
 BEGIN
     ALTER TABLE department DROP CONSTRAINT fk_department_head;
 END
-GO
 
 ----------------------------------------
 -- 2. Drop tables in proper order
@@ -50,6 +49,8 @@ GO
 IF OBJECT_ID('instructor', 'U') IS NOT NULL DROP TABLE instructor;
 GO
 IF OBJECT_ID('department', 'U') IS NOT NULL DROP TABLE department;
+GO
+IF OBJECT_ID('dbo.ShoppingCart', 'U') IS NOT NULL DROP TABLE dbo.ShoppingCart;
 GO
 
 ----------------------------------------
@@ -149,10 +150,7 @@ CREATE TABLE prerequisite (
 );
 GO
 
-IF OBJECT_ID('dbo.ShoppingCart', 'U') IS NOT NULL DROP TABLE dbo.ShoppingCart;
-GO
-
-CREATE TABLE dbo.ShoppingCart (
+CREATE TABLE ShoppingCart (
     ShoppingCartID INT IDENTITY(1,1) PRIMARY KEY,
     StudentID INT NOT NULL,
     CourseInstanceID INT NOT NULL,
@@ -174,48 +172,45 @@ GO
 -- :r "$(ScriptPath)\Instructor_Insert.sql"
 -- :r "$(ScriptPath)\Course_Insert.sql"
 -- :r "$(ScriptPath)\Instance_Insert.sql"
+-- :r "$(ScriptPath)\Registration_Insert.sql"
+-- :r "$(ScriptPath)\Prerequisite_Insert.sql"
 
 ----------------------------------------
 -- 5. Create & execute the materialized view procedure
 ----------------------------------------
 
--- -- Ensure you're in the correct database context
--- USE CMPT391S2025;
--- GO
+ -- Ensure you're in the correct database context
+ USE CMPT391S2025;
+ GO
 
--- -- Drop the view if it exists
--- IF OBJECT_ID('dbo.view_student_registration', 'V') IS NOT NULL
---     DROP VIEW dbo.view_student_registration;
--- GO
+ -- Create the materialized view with schemabinding
+ CREATE VIEW dbo.view_student_registration
+ WITH SCHEMABINDING
+ AS
+     SELECT
+         s.student_id,
+         r.course_instance_id, 
+         c.course_id, 
+         r.course_completed,
+         c.course_name, 
+         i.start_date, 
+         i.end_date, 
+         i.start_time, 
+         i.end_time,
+         i.days_of_week
+     FROM dbo.student s
+     JOIN dbo.registration r ON s.student_id = r.student_id
+     JOIN dbo.course_instance i ON r.course_instance_id = i.course_instance_id
+     JOIN dbo.course c ON i.course_id = c.course_id;
+ GO
 
--- -- Create the materialized view with schemabinding
--- CREATE VIEW dbo.view_student_registration
--- WITH SCHEMABINDING
--- AS
---     SELECT
---         s.student_id,
---         r.course_instance_id, 
---         c.course_id, 
---         r.course_completed,
---         c.course_name, 
---         i.start_date, 
---         i.end_date, 
---         i.start_time, 
---         i.end_time,
---         i.days_of_week
---     FROM dbo.student s
---     JOIN dbo.registration r ON s.student_id = r.student_id
---     JOIN dbo.course_instance i ON r.course_instance_id = i.course_instance_id
---     JOIN dbo.course c ON i.course_id = c.course_id;
--- GO
+ -- Create a unique clustered index on the view to materialize it
+ CREATE UNIQUE CLUSTERED INDEX idx_student_registration
+ON dbo.view_student_registration(student_id, course_instance_id);
+GO
 
--- -- Create a unique clustered index on the view to materialize it
--- CREATE UNIQUE CLUSTERED INDEX idx_student_registration
--- ON dbo.view_student_registration(student_id);
--- GO
-
--- PRINT 'Materialized view and index created successfully.';
--- GO
+ PRINT 'Materialized view and index created successfully.';
+ GO
 
 ----------------------------------------
 -- 6. Potentially Automate Stored Procedures Here, once we've determined all that are necessary
