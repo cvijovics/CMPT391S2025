@@ -1,6 +1,7 @@
-
 USE CMPT391S2025;
 GO
+-- For testing dbo.ValidateStudentRegistration
+insert into course (course_id, course_name) values (0, 'CMPT102');
 
 insert into course (course_id, course_name) values (1, 'CMPT101');
 insert into course (course_id, course_name) values (2, 'MATH200');
