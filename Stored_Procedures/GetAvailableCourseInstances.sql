@@ -1,7 +1,13 @@
+IF OBJECT_ID('dbo.GetAvailableCourseInstances', 'P') IS NOT NULL
+    DROP PROCEDURE dbo.GetAvailableCourseInstances;
+GO
+
 CREATE PROCEDURE GetAvailableCourseInstances
 AS
 BEGIN
     SET NOCOUNT ON;
+
+	BEGIN TRANSACTION;
 
     SELECT 
         ci.course_instance_id,
@@ -18,5 +24,7 @@ BEGIN
     JOIN course c ON ci.course_id = c.course_id
     WHERE ci.current_occupancy < ci.max_occupancy
     ORDER BY c.course_name, ci.start_date;
+	
+	COMMIT TRANSACTION;
 END;
 GO
