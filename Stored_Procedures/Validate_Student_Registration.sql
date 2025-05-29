@@ -1,5 +1,7 @@
 -- Validate student registration
 
+USE CMPT391S2025;
+GO
 IF OBJECT_ID('dbo.ValidateStudentRegistration', 'P') IS NOT NULL
     DROP PROCEDURE dbo.ValidateStudentRegistration;
 GO
@@ -8,7 +10,7 @@ CREATE PROCEDURE dbo.ValidateStudentRegistration
     @StudentID INT,
     @CourseInstanceID INT
 AS
-BEGIN
+BEGIN TRANSACTION
     SET NOCOUNT ON;
 
     DECLARE @CourseID INT,
@@ -17,7 +19,7 @@ BEGIN
             @TargetEnd TIME;
     
 	BEGIN TRY
-		BEGIN TRANSACTION;
+
 
 		-- Retrieve course and schedule info from course_instance.
 		SELECT 
@@ -31,7 +33,7 @@ BEGIN
 		IF @CourseID IS NULL
 		BEGIN
 			RAISERROR('Invalid course instance.', 16, 1);
-			THROW;
+			RETURN;
 		END
 
 		------------------------------------------------------------------------
@@ -50,7 +52,7 @@ BEGIN
 		)
 		BEGIN
 			RAISERROR('Prerequisites not met.', 16, 1);
-			THROW;
+			RETURN;
 		END
 
 		------------------------------------------------------------------------
@@ -68,7 +70,7 @@ BEGIN
 		)
 		BEGIN
 			RAISERROR('Schedule conflict detected.', 16, 1);
-			THROW;
+			RETURN;
 		END
 
 		------------------------------------------------------------------------
@@ -76,13 +78,13 @@ BEGIN
 		INSERT INTO ShoppingCart (StudentID, CourseInstanceID, CourseID, AddedDate)
 		VALUES (@StudentID, @CourseInstanceID, @CourseID, GETDATE());
 
-		COMMIT TRANSACTION;
 
 		PRINT 'Validation successful. Data loaded into shopping cart.';
+		COMMIT TRANSACTION;
 	END TRY
 	BEGIN CATCH
 		ROLLBACK TRANSACTION;
 		THROW;
 	END CATCH
-END;
-GO
+
+

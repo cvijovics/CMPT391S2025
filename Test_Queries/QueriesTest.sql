@@ -12,12 +12,13 @@ FROM department;
 -- EXEC createMaterializedView;
 
 -- confirm data population
-SELECT student_id, first_name, last_name FROM student;
-SELECT department_id, department_name FROM department;
-SELECT COUNT(*) AS StudentCount FROM dbo.student;
-SELECT COUNT(*) AS CourseInstanceCount FROM dbo.course_instance;
+--SELECT student_id, first_name, last_name FROM student;
+--SELECT department_id, department_name FROM department;
+--SELECT COUNT(*) AS StudentCount FROM dbo.student;
+--SELECT COUNT(*) AS CourseInstanceCount FROM dbo.course_instance;
 
 -- retrieve all students and their registration information from the materialized view
-SELECT * FROM view_student_registration;
+--SELECT * FROM view_student_registration;
+EXEC dbo.GetAvailableCourseInstances;
 
 

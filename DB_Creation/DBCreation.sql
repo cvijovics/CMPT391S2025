@@ -150,12 +150,24 @@ CREATE TABLE prerequisite (
 );
 GO
 
-CREATE TABLE ShoppingCart (
-    ShoppingCartID INT IDENTITY(1,1) PRIMARY KEY,
-    StudentID INT NOT NULL,
-    CourseInstanceID INT NOT NULL,
-    CourseID INT NOT NULL,
-    AddedDate DATETIME NOT NULL
+CREATE TABLE shopping_cart (
+    shopping_cart_id INT IDENTITY(1,1) PRIMARY KEY,
+    student_id INT NOT NULL,
+    course_instance_id INT NOT NULL,
+    course_id INT NOT NULL,
+    added_date DATETIME NOT NULL,
+    FOREIGN KEY (student_id) 
+        REFERENCES student(student_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (course_instance_id)
+        REFERENCES course_instance(course_instance_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (course_id)
+        REFERENCES course(course_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 GO
 
