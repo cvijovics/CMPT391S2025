@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/CMPT391S2025/CopilotIndices/17.13.444.19527
+/.vs/CMPT391S2025/FileContentIndex
+/.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json
+/.vs/CMPT391S2025/v17
+/CourseRegistrationApp/.vs/CourseRegistrationApp/CopilotIndices/17.13.444.19527
+/CourseRegistrationApp/.vs/CourseRegistrationApp/FileContentIndex
+/CourseRegistrationApp/.vs/CourseRegistrationApp/v17/ResourceExplorer
+/CourseRegistrationApp/.vs/CourseRegistrationApp/v17
