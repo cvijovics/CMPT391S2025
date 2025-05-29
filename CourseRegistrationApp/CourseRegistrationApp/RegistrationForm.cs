@@ -90,5 +90,10 @@ namespace CourseRegistrationApp
             courseForm.FormClosed += (s, args) => this.Close(); // Close this form when the other is closed
             courseForm.Show();
         }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
