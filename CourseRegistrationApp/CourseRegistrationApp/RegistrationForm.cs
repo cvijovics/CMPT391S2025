@@ -109,14 +109,25 @@ namespace CourseRegistrationApp
         {
             // Navigate back
             this.Hide(); // Hide the current form
-            selectionForm courseForm = new selectionForm();
+            selectionForm courseForm = new selectionForm(string.Empty, this);
             courseForm.FormClosed += (s, args) => this.Close(); // Close this form when the other is closed
             courseForm.Show();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            string studentId = textBox1.Text.Trim();
 
+            if (!string.IsNullOrEmpty(studentId))
+            {
+                selectionForm confirmForm = new selectionForm(studentId, this);
+                this.Hide();
+                confirmForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please enter a student ID before proceeding.");
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

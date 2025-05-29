@@ -68,6 +68,22 @@ BEGIN TRANSACTION
 				 OR vsr.days_of_week LIKE '%' + SUBSTRING(@TargetDays, 3, 1) + '%'
 			  )
 			  AND (vsr.start_time < @TargetEnd AND vsr.end_time > @TargetStart)
+			
+			  UNION
+
+			-- Also check the shopping cart for conflicts
+			  SELECT 1
+			  FROM dbo.shopping_cart sc
+			  JOIN dbo.course_instance ci ON sc.course_instance_id = ci.course_instance_id
+			  WHERE sc.student_id = @StudentID
+			    AND (
+					ci.days_of_week LIKE '%' + SUBSTRING(@TargetDays, 1, 1) + '%'
+				 OR ci.days_of_week LIKE '%' + SUBSTRING(@TargetDays, 2, 1) + '%'
+				 OR ci.days_of_week LIKE '%' + SUBSTRING(@TargetDays, 3, 1) + '%'
+			  	)
+			    AND (ci.start_time < @TargetEnd AND ci.end_time > @TargetStart)
+
+
 		)
 		BEGIN
 			RAISERROR('Schedule conflict detected.', 16, 1);
@@ -78,9 +94,9 @@ BEGIN TRANSACTION
 		-- 3. Check if same instance exists in shopping cart.
 		IF EXISTS (
 			SELECT 1
-			FROM ShoppingCart
-			WHERE StudentID = @StudentID
-			  AND CourseID = @CourseID
+			FROM shopping_cart
+			WHERE student_id = @StudentID
+			  AND course_id = @CourseID
 		)
 		BEGIN
 			RAISERROR('This course is already in your shopping cart.', 16, 1);
@@ -89,7 +105,7 @@ BEGIN TRANSACTION
 
 		------------------------------------------------------------------------
 		-- If all checks pass, load data into the "shopping cart" for further review.
-		INSERT INTO ShoppingCart (StudentID, CourseInstanceID, CourseID, AddedDate)
+		INSERT INTO shopping_cart (student_id, course_instance_id, course_id, added_date)
 		VALUES (@StudentID, @CourseInstanceID, @CourseID, GETDATE());
 
 

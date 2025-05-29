@@ -50,7 +50,7 @@ IF OBJECT_ID('instructor', 'U') IS NOT NULL DROP TABLE instructor;
 GO
 IF OBJECT_ID('department', 'U') IS NOT NULL DROP TABLE department;
 GO
-IF OBJECT_ID('dbo.ShoppingCart', 'U') IS NOT NULL DROP TABLE dbo.ShoppingCart;
+IF OBJECT_ID('dbo.shopping_cart', 'U') IS NOT NULL DROP TABLE dbo.shopping_cart;
 GO
 
 ----------------------------------------
@@ -156,18 +156,7 @@ CREATE TABLE shopping_cart (
     course_instance_id INT NOT NULL,
     course_id INT NOT NULL,
     added_date DATETIME NOT NULL,
-    FOREIGN KEY (student_id) 
-        REFERENCES student(student_id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    FOREIGN KEY (course_instance_id)
-        REFERENCES course_instance(course_instance_id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    FOREIGN KEY (course_id)
-        REFERENCES course(course_id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
+
 );
 GO
 
