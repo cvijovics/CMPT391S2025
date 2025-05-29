@@ -1,3 +1,7 @@
-EXEC Validate_Student_Registration 
-     @student_id = 9001,  -- Lionel Messi
-     @course_id = 491;    -- CMPT 491 (Advanced)
+USE CMPT391S2025;
+GO
+
+
+EXEC ValidateStudentRegistration
+     9001,  -- Lionel Messi / student_id
+     2003;    -- CMPT 491 (Advanced) / course_instance_id

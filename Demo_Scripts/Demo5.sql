@@ -1,3 +1,7 @@
+USE CMPT391S2025;
+GO
+
+
 SELECT s.first_name, s.last_name, c.course_name, r.course_completed
 FROM dbo.registration r
 JOIN dbo.student s ON r.student_id = s.student_id
