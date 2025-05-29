@@ -14,7 +14,7 @@ VALUES
 /* === Demo Instructor === */
 INSERT INTO dbo.instructor (instructor_id, first_name, last_name, department_id)
 VALUES
-  (1001, 'Alan', 'Turing', 1);
+  (1001, 'Mohamad', 'El-Hajj', 1);
 
 /* === Demo Course Instances === */
 INSERT INTO dbo.course_instance 
