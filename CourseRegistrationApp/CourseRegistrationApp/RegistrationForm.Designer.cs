@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.colSelect = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colCourseCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInstructor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSeats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCourseId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInstanceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -41,14 +49,6 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.add_course = new System.Windows.Forms.Button();
-            this.colSelect = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colCourseCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colInstructor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSeats = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCourseId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colInstanceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -76,6 +76,59 @@
             this.dataGridView1.Size = new System.Drawing.Size(778, 137);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // colSelect
+            // 
+            this.colSelect.HeaderText = "";
+            this.colSelect.MinimumWidth = 6;
+            this.colSelect.Name = "colSelect";
+            // 
+            // colCourseCode
+            // 
+            this.colCourseCode.HeaderText = "Course Code";
+            this.colCourseCode.MinimumWidth = 6;
+            this.colCourseCode.Name = "colCourseCode";
+            this.colCourseCode.ReadOnly = true;
+            // 
+            // colTitle
+            // 
+            this.colTitle.HeaderText = "Title";
+            this.colTitle.MinimumWidth = 6;
+            this.colTitle.Name = "colTitle";
+            this.colTitle.ReadOnly = true;
+            // 
+            // colInstructor
+            // 
+            this.colInstructor.HeaderText = "Instructor";
+            this.colInstructor.MinimumWidth = 6;
+            this.colInstructor.Name = "colInstructor";
+            this.colInstructor.ReadOnly = true;
+            // 
+            // colTime
+            // 
+            this.colTime.HeaderText = "Time Slot";
+            this.colTime.MinimumWidth = 6;
+            this.colTime.Name = "colTime";
+            this.colTime.ReadOnly = true;
+            // 
+            // colSeats
+            // 
+            this.colSeats.HeaderText = "Seats";
+            this.colSeats.MinimumWidth = 6;
+            this.colSeats.Name = "colSeats";
+            this.colSeats.ReadOnly = true;
+            // 
+            // colCourseId
+            // 
+            this.colCourseId.HeaderText = "Course ID";
+            this.colCourseId.MinimumWidth = 6;
+            this.colCourseId.Name = "colCourseId";
+            this.colCourseId.ReadOnly = true;
+            // 
+            // colInstanceId
+            // 
+            this.colInstanceId.HeaderText = "Instance Id";
+            this.colInstanceId.Name = "colInstanceId";
             // 
             // label2
             // 
@@ -119,6 +172,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 12;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // comboBox1
             // 
@@ -127,6 +181,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 11;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
             // label4
             // 
@@ -204,59 +259,6 @@
             this.add_course.Text = "Add Course";
             this.add_course.UseVisualStyleBackColor = true;
             this.add_course.Click += new System.EventHandler(this.add_course_Click);
-            // 
-            // colSelect
-            // 
-            this.colSelect.HeaderText = "";
-            this.colSelect.MinimumWidth = 6;
-            this.colSelect.Name = "colSelect";
-            // 
-            // colCourseCode
-            // 
-            this.colCourseCode.HeaderText = "Course Code";
-            this.colCourseCode.MinimumWidth = 6;
-            this.colCourseCode.Name = "colCourseCode";
-            this.colCourseCode.ReadOnly = true;
-            // 
-            // colTitle
-            // 
-            this.colTitle.HeaderText = "Title";
-            this.colTitle.MinimumWidth = 6;
-            this.colTitle.Name = "colTitle";
-            this.colTitle.ReadOnly = true;
-            // 
-            // colInstructor
-            // 
-            this.colInstructor.HeaderText = "Instructor";
-            this.colInstructor.MinimumWidth = 6;
-            this.colInstructor.Name = "colInstructor";
-            this.colInstructor.ReadOnly = true;
-            // 
-            // colTime
-            // 
-            this.colTime.HeaderText = "Time Slot";
-            this.colTime.MinimumWidth = 6;
-            this.colTime.Name = "colTime";
-            this.colTime.ReadOnly = true;
-            // 
-            // colSeats
-            // 
-            this.colSeats.HeaderText = "Seats";
-            this.colSeats.MinimumWidth = 6;
-            this.colSeats.Name = "colSeats";
-            this.colSeats.ReadOnly = true;
-            // 
-            // colCourseId
-            // 
-            this.colCourseId.HeaderText = "Course ID";
-            this.colCourseId.MinimumWidth = 6;
-            this.colCourseId.Name = "colCourseId";
-            this.colCourseId.ReadOnly = true;
-            // 
-            // colInstanceId
-            // 
-            this.colInstanceId.HeaderText = "Instance Id";
-            this.colInstanceId.Name = "colInstanceId";
             // 
             // RegistrationForm
             // 
