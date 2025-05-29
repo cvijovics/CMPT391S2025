@@ -1,7 +1,3 @@
-USE CMPT391S2025;
-GO
-
--- For testing dbo.ValidateStudentRegistration
 insert into course_instance (course_instance_id, course_id, instructor_id, start_date, end_date, start_time, end_time, days_of_week, max_occupancy, current_occupancy) values (1342, 24, 36, '2026-01-06', '2026-04-09', '11:00', '14:00', 'TT', 30, 13);
 insert into course_instance (course_instance_id, course_id, instructor_id, start_date, end_date, start_time, end_time, days_of_week, max_occupancy, current_occupancy) values (1352, 23, 2, '2025-09-01', '2025-12-15', '11:00', '14:00', 'TT', 30, 7);
 insert into course_instance (course_instance_id, course_id, instructor_id, start_date, end_date, start_time, end_time, days_of_week, max_occupancy, current_occupancy) values (1235, 36, 91, '2026-01-06', '2026-04-09', '11:00', '14:00', 'TT', 30, 15);
@@ -102,4 +98,3 @@ insert into course_instance (course_instance_id, course_id, instructor_id, start
 insert into course_instance (course_instance_id, course_id, instructor_id, start_date, end_date, start_time, end_time, days_of_week, max_occupancy, current_occupancy) values (1384, 20, 13, '2026-01-06', '2026-04-09', '11:00', '14:00', 'TT', 30, 15);
 insert into course_instance (course_instance_id, course_id, instructor_id, start_date, end_date, start_time, end_time, days_of_week, max_occupancy, current_occupancy) values (1342, 27, 75, '2026-05-01', '2026-06-15', '11:00', '14:00', 'MWF', 30, 6);
 insert into course_instance (course_instance_id, course_id, instructor_id, start_date, end_date, start_time, end_time, days_of_week, max_occupancy, current_occupancy) values (1333, 49, 44, '2026-07-01', '2026-08-15', '11:00', '14:00', 'MWF', 30, 15);
-

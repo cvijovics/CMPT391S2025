@@ -1,0 +1,4 @@
+USE CMPT391S2025;
+GO
+
+SELECT * FROM course_instance;

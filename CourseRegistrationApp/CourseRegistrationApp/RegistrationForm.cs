@@ -20,12 +20,18 @@ namespace CourseRegistrationApp
 
         private void RegistrationForm_Load(object sender, EventArgs e)
         {
+            comboBox1.Items.AddRange(new string[] { "Winter", "Spring", "Summer", "Fall" });
+
+            comboBox2.Items.AddRange(new string[] { "2025", "2026" });
             LoadCourseData();
         }
 
         private void LoadCourseData()
         {
             dataGridView1.Rows.Clear();
+
+            string selectedTerm = comboBox1.Text; 
+            string selectedYear = comboBox2.Text; 
 
             string connStr = "Server=localhost;Database=CMPT391S2025;Trusted_Connection=True;";
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -38,6 +44,26 @@ namespace CourseRegistrationApp
 
                 while (reader.Read())
                 {
+                    // Get and parse start date
+                    DateTime startDate = Convert.ToDateTime(reader["start_date"]);
+                    int month = startDate.Month;
+                    int year = startDate.Year;
+
+                    string term;
+                    if (month >= 1 && month <= 4) term = "Winter";
+                    else if (month >= 5 && month <= 6) term = "Spring";
+                    else if (month >= 7 && month <= 8) term = "Summer";
+                    else term = "Fall";
+
+                    string enrollmentTerm = $"{term} {year}";
+
+                    if (!string.IsNullOrWhiteSpace(selectedTerm) && term != selectedTerm)
+                        continue;
+
+                    if (!string.IsNullOrWhiteSpace(selectedYear) && year.ToString() != selectedYear)
+                        continue;
+
+
                     string courseName = reader["course_name"].ToString();
                     string timeSlot = $"{reader["days_of_week"]} {reader["start_time"]}–{reader["end_time"]}";
                     string seats = $"{reader["current_occupancy"]}/{reader["max_occupancy"]}";
@@ -94,6 +120,17 @@ namespace CourseRegistrationApp
         private void btnRegister_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           LoadCourseData();
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadCourseData();
         }
     }
 }
