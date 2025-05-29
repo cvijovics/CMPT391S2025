@@ -35,10 +35,8 @@
             this.colInstructor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSeats = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colWaitlist = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrereqs = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colConflict = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCourseId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInstanceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -50,6 +48,7 @@
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.add_course = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -68,10 +67,8 @@
             this.colInstructor,
             this.colTime,
             this.colSeats,
-            this.colWaitlist,
-            this.colPrereqs,
-            this.colConflict,
-            this.colAction});
+            this.colCourseId,
+            this.colInstanceId});
             this.dataGridView1.Location = new System.Drawing.Point(12, 232);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
@@ -121,33 +118,17 @@
             this.colSeats.Name = "colSeats";
             this.colSeats.ReadOnly = true;
             // 
-            // colWaitlist
+            // colCourseId
             // 
-            this.colWaitlist.HeaderText = "Waitlist";
-            this.colWaitlist.MinimumWidth = 6;
-            this.colWaitlist.Name = "colWaitlist";
-            this.colWaitlist.ReadOnly = true;
+            this.colCourseId.HeaderText = "Course ID";
+            this.colCourseId.MinimumWidth = 6;
+            this.colCourseId.Name = "colCourseId";
+            this.colCourseId.ReadOnly = true;
             // 
-            // colPrereqs
+            // colInstanceId
             // 
-            this.colPrereqs.HeaderText = "Prereqs Met";
-            this.colPrereqs.MinimumWidth = 6;
-            this.colPrereqs.Name = "colPrereqs";
-            this.colPrereqs.ReadOnly = true;
-            // 
-            // colConflict
-            // 
-            this.colConflict.HeaderText = "Time Conflict";
-            this.colConflict.MinimumWidth = 6;
-            this.colConflict.Name = "colConflict";
-            this.colConflict.ReadOnly = true;
-            // 
-            // colAction
-            // 
-            this.colAction.HeaderText = "Action";
-            this.colAction.MinimumWidth = 6;
-            this.colAction.Name = "colAction";
-            this.colAction.ReadOnly = true;
+            this.colInstanceId.HeaderText = "Instance Id";
+            this.colInstanceId.Name = "colInstanceId";
             // 
             // label2
             // 
@@ -191,6 +172,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 12;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // comboBox1
             // 
@@ -199,6 +181,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 11;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
             // label4
             // 
@@ -230,11 +213,11 @@
             this.btnRegister.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegister.Location = new System.Drawing.Point(174, 12);
-            this.btnRegister.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(2);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(136, 38);
             this.btnRegister.TabIndex = 14;
-            this.btnRegister.Text = "Register";
+            this.btnRegister.Text = "Checkout";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
@@ -243,7 +226,7 @@
             this.btnBack.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.Location = new System.Drawing.Point(13, 13);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(136, 37);
             this.btnBack.TabIndex = 15;
@@ -259,7 +242,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnRegister, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnBack, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(244, 375);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66F));
@@ -267,11 +250,22 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(322, 80);
             this.tableLayoutPanel1.TabIndex = 16;
             // 
+            // add_course
+            // 
+            this.add_course.Location = new System.Drawing.Point(40, 376);
+            this.add_course.Name = "add_course";
+            this.add_course.Size = new System.Drawing.Size(75, 23);
+            this.add_course.TabIndex = 17;
+            this.add_course.Text = "Add Course";
+            this.add_course.UseVisualStyleBackColor = true;
+            this.add_course.Click += new System.EventHandler(this.add_course_Click);
+            // 
             // RegistrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.add_course);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.comboBox2);
@@ -305,16 +299,15 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button add_course;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colSelect;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCourseCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn colInstructor;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSeats;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colWaitlist;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPrereqs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colConflict;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAction;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCourseId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colInstanceId;
     }
 }

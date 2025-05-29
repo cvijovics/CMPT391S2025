@@ -50,7 +50,7 @@ IF OBJECT_ID('instructor', 'U') IS NOT NULL DROP TABLE instructor;
 GO
 IF OBJECT_ID('department', 'U') IS NOT NULL DROP TABLE department;
 GO
-IF OBJECT_ID('dbo.ShoppingCart', 'U') IS NOT NULL DROP TABLE dbo.ShoppingCart;
+IF OBJECT_ID('dbo.shopping_cart', 'U') IS NOT NULL DROP TABLE dbo.shopping_cart;
 GO
 
 ----------------------------------------
@@ -150,12 +150,13 @@ CREATE TABLE prerequisite (
 );
 GO
 
-CREATE TABLE ShoppingCart (
-    ShoppingCartID INT IDENTITY(1,1) PRIMARY KEY,
-    StudentID INT NOT NULL,
-    CourseInstanceID INT NOT NULL,
-    CourseID INT NOT NULL,
-    AddedDate DATETIME NOT NULL
+CREATE TABLE shopping_cart (
+    shopping_cart_id INT IDENTITY(1,1) PRIMARY KEY,
+    student_id INT NOT NULL,
+    course_instance_id INT NOT NULL,
+    course_id INT NOT NULL,
+    added_date DATETIME NOT NULL,
+
 );
 GO
 

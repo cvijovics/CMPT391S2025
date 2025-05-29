@@ -10,11 +10,9 @@ AS
 BEGIN TRANSACTION
     BEGIN TRY 
         SET NOCOUNT ON;
-
-        BEGIN TRANSACTION;
-
         SELECT
             ci.course_instance_id,
+            c.course_id,
             c.course_name,
             ci.start_date,
             ci.end_date,
