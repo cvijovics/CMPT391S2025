@@ -61,6 +61,7 @@ BEGIN TRANSACTION
 			SELECT 1
 			FROM dbo.view_student_registration vsr
 			WHERE vsr.student_id = @StudentID
+			  AND vsr.course_completed = 0
 			  AND (
 					vsr.days_of_week LIKE '%' + SUBSTRING(@TargetDays, 1, 1) + '%'
 				 OR vsr.days_of_week LIKE '%' + SUBSTRING(@TargetDays, 2, 1) + '%'
@@ -70,6 +71,19 @@ BEGIN TRANSACTION
 		)
 		BEGIN
 			RAISERROR('Schedule conflict detected.', 16, 1);
+			RETURN;
+		END
+
+		------------------------------------------------------------------------
+		-- 3. Check if same instance exists in shopping cart.
+		IF EXISTS (
+			SELECT 1
+			FROM ShoppingCart
+			WHERE StudentID = @StudentID
+			  AND CourseID = @CourseID
+		)
+		BEGIN
+			RAISERROR('This course is already in your shopping cart.', 16, 1);
 			RETURN;
 		END
 
