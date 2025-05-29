@@ -45,7 +45,7 @@ This repository contains the SQL scripts needed to set up the CMPT391S2025 datab
    - **Note:** If batch separators (like `GO`) cause issues, run each command individually.
 
 5. **Insert test data**
-   - Run main insert data in this order: Department, Student, Instructor, Course, Instance
+   - Run main insert data in this order: Department, Student, Instructor, Course, Instance (and New_instance)
    - Run Prerequisite and Registration insert data (in no particular order)
 
    **THIS IS NOT REQUIRED IF YOU INSERT YOUR OWN DATA**
@@ -60,6 +60,7 @@ This repository contains the SQL scripts needed to set up the CMPT391S2025 datab
       - 1. `Create_Materialized_View.sql`
       - 2. `Validate_Student_Registration.sql`
       - 3. `Confirm_Student_Registration.sql`
+      - 4. `GetShoppingCartContents.sql`
    
    - Front-End Queries:
       - 1. `GetAvailableCourseInstances.sq1`
