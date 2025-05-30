@@ -1,5 +1,6 @@
 -- Confirm Student Registration
-
+USE CMPT391S2025;
+GO
 IF OBJECT_ID('dbo.ConfirmStudentRegistration', 'P') IS NOT NULL
     DROP PROCEDURE dbo.ConfirmStudentRegistration;
 GO
@@ -32,6 +33,11 @@ BEGIN
     -- Insert the registration record.
     INSERT INTO registration (course_instance_id, student_id, registration_date, course_completed)
     VALUES (@CourseInstanceID, @StudentID, GETDATE(), 0);
+
+    ------------------------------------------------------------------------
+    -- Delete the course instance from the student's shopping cart.
+    DELETE FROM shopping_cart
+    WHERE student_id = @StudentID AND course_instance_id = @CourseInstanceID;
 
     ------------------------------------------------------------------------
     -- Update the course instance's current occupancy.

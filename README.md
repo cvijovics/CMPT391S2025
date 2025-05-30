@@ -45,8 +45,10 @@ This repository contains the SQL scripts needed to set up the CMPT391S2025 datab
    - **Note:** If batch separators (like `GO`) cause issues, run each command individually.
 
 5. **Insert test data**
-   - Run insert data in this order:
-   - department, student, instructor, course, instance
+   - Run main insert data in this order: Department, Student, Instructor, Course, Instance (and New_instance)
+   - Run Prerequisite and Registration insert data (in no particular order)
+
+   **THIS IS NOT REQUIRED IF YOU INSERT YOUR OWN DATA**
 
 6. **Insert Materialized View/Stored Procedures**
 
@@ -58,6 +60,7 @@ This repository contains the SQL scripts needed to set up the CMPT391S2025 datab
       - 1. `Create_Materialized_View.sql`
       - 2. `Validate_Student_Registration.sql`
       - 3. `Confirm_Student_Registration.sql`
+      - 4. `GetShoppingCartContents.sql`
    
    - Front-End Queries:
       - 1. `GetAvailableCourseInstances.sq1`
@@ -74,6 +77,10 @@ This repository contains the SQL scripts needed to set up the CMPT391S2025 datab
    - You should see query results with headers and the inserted data.
 
    - Testing scripts included under `Test_Queries`
+
+8. **Run the Debug .Exe in Visual Studio**
+
+   - Give it a try!
 
 ---
 
@@ -92,6 +99,11 @@ This repository contains the SQL scripts needed to set up the CMPT391S2025 datab
 - **Reload VS Code:**  
   If problems persist, try reloading VS Code with `Developer: Reload Window` from the Command Palette.
 
+- **Disable Newer Extensions**  
+  Some newer extensions won't work with older versions of .NET frameworks, such as C# Dev Kit and Unity Extensions.
+
 - ### To Start From Scratch:
    - Run `DeleteDB.sql`
    - Start from beginning
+
+
